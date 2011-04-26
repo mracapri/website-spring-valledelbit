@@ -11,5 +11,5 @@
 	<context:component-scan base-package="org.valledelbit.website.view.controller" />
 	
 	<import resource="AppCtx-SpringMVC-View.xml" />
-	
+	<import resource="AppCtx-SpringMVC-Properties.xml" />
 </beans>

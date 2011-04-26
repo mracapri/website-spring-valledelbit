@@ -66,25 +66,27 @@ public class TestReunionControllerDELETE {
     
 	@Test
 	public void testBorrandoReunionPorId() throws Exception{
-
+		String fechaReunion = "2011-05-23";
+		
 		// Pasando valores al request
 		
-		request.addParameter("geolocalizacion", reunion.getGeolocalizacion());		
+		request.addParameter("geolocalizacion", reunion.getGeolocalizacion());
+		request.addParameter("fecha", fechaReunion);
 		request.addParameter("hora", reunion.getHora());
 		request.addParameter("lugar", reunion.getLugar());
-		request.addParameter("nombreLink", reunion.getNombreLink());
+		request.addParameter("nombre_link", reunion.getNombreLink());
 		request.addParameter("ponente", reunion.getPonente());
 		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());
 		request.addParameter("tema", reunion.getTema());
-		request.addParameter("objetivo", reunion.getTags());
+		request.addParameter("objetivo", reunion.getObjetivo());
 				
 		/*
 		 * Persistiendo reunion desde controller
 		 * */
 		
 		// Estableciendo URI
-		request.setMethod("PUT");
+		request.setMethod("POST");
 		request.setRequestURI("/reunion/set");
 		
 		final ModelAndView modelAndView = handlerAdapter.handle(request, response, reunionController);
@@ -103,21 +105,44 @@ public class TestReunionControllerDELETE {
 		// Estableciendo URI con el valor de la reunion
 		request.addParameter("id", leer.getId() + "");
 		request.setMethod("GET");
-		request.setRequestURI("/reunion/get");
-		log.debug(ToStringBuilder.reflectionToString(request));
+		request.setRequestURI("/reunion/get");		
 		
 		final ModelAndView modelAndView2 = handlerAdapter.handle(request, response, reunionController);
 		Assert.assertNotNull(modelAndView2.getModel().get("reunion"));
 		log.debug(modelAndView2);
 		
 		
+		setUp();
+		
 		/*
 		 * Borrando
 		 * */
 		
+		// Estableciendo URI con el valor de la reunion
+		request.addParameter("id", leer.getId() + "");
+		request.setMethod("DELETE");
+		request.setRequestURI("/reunion/remove");
+		log.debug(ToStringBuilder.reflectionToString(request));
+		
+		final ModelAndView modelAndView3 = handlerAdapter.handle(request, response, reunionController);
+		log.debug(modelAndView3);
+		Assert.assertTrue(modelAndView3.getModel().get("result").equals("la reunion ha sido removida"));
+		
+		
+		setUp();
+		
 		/*
 		 * Consultando nuevamente
-		 * */		
+		 * */
+		
+		// Estableciendo URI con el valor de la reunion
+		request.addParameter("id", leer.getId() + "");
+		request.setMethod("GET");
+		request.setRequestURI("/reunion/get");		
+		
+		final ModelAndView modelAndView4 = handlerAdapter.handle(request, response, reunionController);		
+		Assert.assertTrue(modelAndView4.getModel().get("result").equals("la reunion no existe en el catalogo"));
+		log.debug(modelAndView4);
 	}
 
 }

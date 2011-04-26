@@ -240,4 +240,20 @@ public class TestReunionService implements TestPrincipales{
 		}
 	}	
 	
+	@Test
+	public void testReadIdNoExistente() {		
+		try {
+
+			// Obteniendo una reunion a travez del ID
+			Reunion leida = reunionService.getReunion(1);
+			
+			// La prueba es evaluada
+			assertEquals(true, leida == null);			
+			
+		} catch (ValleDelBitWebSiteException e) {
+			assertEquals(true, false);
+			log.error(ToStringBuilder.reflectionToString(e));
+			e.printStackTrace();
+		}
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import junit.framework.Assert;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +29,7 @@ import org.valledelbit.website.view.controller.ReunionController;
 	"classpath:/AppCtx-Servicios.xml",
 	"classpath:/AppCtx-Transacciones.xml"})
 @Transactional
-public class TestReunionControllerPUT {	
+public class TestReunionControllerDELETE {	
 	
 	@Autowired
 	ReunionController reunionController;	
@@ -64,7 +65,7 @@ public class TestReunionControllerPUT {
     }
     
 	@Test
-	public void testPasandoTodosLosValores() throws Exception{
+	public void testBorrandoReunionPorId() throws Exception{
 
 		// Pasando valores al request
 		
@@ -78,27 +79,45 @@ public class TestReunionControllerPUT {
 		request.addParameter("tema", reunion.getTema());
 		request.addParameter("objetivo", reunion.getTags());
 				
+		/*
+		 * Persistiendo reunion desde controller
+		 * */
+		
 		// Estableciendo URI
 		request.setMethod("PUT");
 		request.setRequestURI("/reunion/set");
 		
 		final ModelAndView modelAndView = handlerAdapter.handle(request, response, reunionController);
 		
-		Assert.assertEquals(true, reunionService.getReuniones().size() > 0);
-		Assert.assertNotNull(modelAndView.getModel().get("result"));
+		List<Reunion> reuniones = reunionService.getReuniones();
+		Reunion leer = reuniones.get(0);		
+		log.debug(leer);		
 		
-	}
-	
-	@Test
-	public void testNingunValor() throws Exception{		
-				
-		// Estableciendo URI
-		request.setMethod("PUT");
-		request.setRequestURI("/reunion/set");		
 		
-		final ModelAndView modelAndView = handlerAdapter.handle(request, response, reunionController);
-		Assert.assertTrue(modelAndView.getModel().get("error").equals("geolocalizacion, hora, lugar, nombre_ink, ponente, shortener, tags, tema y objetivo, son requeridos"));
+		setUp();
 		
+		/*
+		 * Consultando reunion desde controller
+		 * */		
+		
+		// Estableciendo URI con el valor de la reunion
+		request.addParameter("id", leer.getId() + "");
+		request.setMethod("GET");
+		request.setRequestURI("/reunion/get");
+		log.debug(ToStringBuilder.reflectionToString(request));
+		
+		final ModelAndView modelAndView2 = handlerAdapter.handle(request, response, reunionController);
+		Assert.assertNotNull(modelAndView2.getModel().get("reunion"));
+		log.debug(modelAndView2);
+		
+		
+		/*
+		 * Borrando
+		 * */
+		
+		/*
+		 * Consultando nuevamente
+		 * */		
 	}
 
 }

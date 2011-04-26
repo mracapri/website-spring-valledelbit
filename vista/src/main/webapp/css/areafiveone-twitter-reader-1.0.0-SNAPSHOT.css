@@ -1,0 +1,29 @@
+/** CSS File */
+#contenedor1{
+	width: 250px;
+	height: auto;
+	background-color: #FFF;
+	padding:12px;
+	border:1px solid #66ccff;
+}
+
+#contenedor1 table{
+	font-size: 11px;
+	color: #000;
+	font-family: 'Verdana';
+}
+
+#contenedor1 hr{
+	border:0px;
+}
+
+#contenedor1 span{
+	font-family: 'Courier New';
+	font-size: 10px;
+	color: #3366ff;
+}
+
+#contenedor1 a:link {color:#FF0000;}      /* unvisited link */
+#contenedor1 a:visited {color:#00FF00;}  /* visited link */
+#contenedor1 a:hover {color:#FF00FF;}  /* mouse over link */
+#contenedor1 a:active {color:#0000FF;}  /* selected link */

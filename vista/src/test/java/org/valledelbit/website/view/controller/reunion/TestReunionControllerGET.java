@@ -148,7 +148,6 @@ public class TestReunionControllerGET {
 		
 		final ModelAndView modelAndView = handlerAdapter.handle(request, response, reunionController);
 		log.debug(modelAndView);
-		Assert.assertTrue(modelAndView.getModel().get("result").equals("no existen reuniones registradas en el catalogo"));
 		
 		
 		// Pasando valores al request

@@ -1,6 +1,5 @@
 package org.valledelbit.website.view.controller.reunion;
 
-import java.util.Date;
 import java.util.List;
 
 import junit.framework.Assert;

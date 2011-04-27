@@ -51,6 +51,7 @@ public class ReunionController{
 				model.addAttribute("error", e.getMessage());
 			}
 		}
+		log.debug(model);
 		return "jsonView";
 	}
 	
@@ -66,6 +67,7 @@ public class ReunionController{
 		} catch (ValleDelBitWebSiteException e) {
 			model.addAttribute("error", e.getMessage());
 		}
+		log.debug(model);
 		return "jsonView";
 	}
 	
@@ -86,6 +88,7 @@ public class ReunionController{
 				model.addAttribute("error", e.getMessage());
 			}
 		}
+		log.debug(model);
 		return "jsonView";
 	}
 	
@@ -130,6 +133,7 @@ public class ReunionController{
 				model.addAttribute("error", "formato de fecha incorrecto, prueba con  YYYY-MM-DD");
 			}
 		}
+		log.debug(model);
 		return "jsonView";
 	}
 	
@@ -182,6 +186,7 @@ public class ReunionController{
 				model.addAttribute("error", "formato de fecha incorrecto, prueba con  YYYY-MM-DD");
 			}
 		}
+		log.debug(model);
 		return "jsonView";
 	}
 

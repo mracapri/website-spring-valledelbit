@@ -72,6 +72,10 @@
 .reunion-result {
     text-transform: uppercase;
 }
+.map {
+    width: 100%;
+    height: 150px;
+}
 </style>
 
 <script type="text/javascript">
@@ -90,6 +94,7 @@ $().ready(function(){
 			$(plantilla).find("#geo-value").html(reunion.geolocalizacion);
 			$(plantilla).find("#social-web-twitter").html(VDBReuniones.getTwitterLinkSocial(reunion));
 			$(plantilla).find("#social-web-facebook").html(VDBReuniones.getFacebookLinkSocial(reunion));
+			$(plantilla).find('iframe[src^=http://maps.google.com]').attr("class","map");
 			return plantilla;
 		},
 		cargaReuniones: function(){

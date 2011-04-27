@@ -8,7 +8,6 @@ import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +22,8 @@ import org.valledelbit.website.persistencia.vo.Reunion;
 @RequestMapping("/reunion")
 public class ReunionController{
 	
+	private static final int UNDEFINED_VALUE_ID = -1;
+
 	protected final Log log = LogFactory.getLog(getClass());	
 	
 	@Autowired
@@ -36,7 +37,7 @@ public class ReunionController{
 			@RequestParam(value="id", required=true, defaultValue="-1") int id, 
 			Model model){
 		
-		if(id == -1){
+		if(id == UNDEFINED_VALUE_ID){
 			model.addAttribute("error", "id es requerido");
 		}else{
 			try {			
@@ -73,7 +74,7 @@ public class ReunionController{
 			@RequestParam(value="id", required=true, defaultValue="-1") int id, 
 			Model model){
 		
-		if(id == -1){
+		if(id == UNDEFINED_VALUE_ID){
 			model.addAttribute("error", "id es requerido");
 		}else{
 			try {			
@@ -103,7 +104,7 @@ public class ReunionController{
 			@RequestParam(value="objetivo", required=true, defaultValue="undefined") String objetivo,
 			Model model){
 		
-		if(id == -1){
+		if(id == UNDEFINED_VALUE_ID){
 			model.addAttribute("error", "id es requerido ó geolocalizacion, hora, lugar, nombre_link, ponente, shortener, tags, tema ó objetivo");
 		}else{
 			try {			

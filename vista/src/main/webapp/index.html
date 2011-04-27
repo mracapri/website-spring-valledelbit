@@ -262,7 +262,7 @@ div#likePage {
     padding: 35px;
     width: 600px;
 }
-.pregunta, .reunion-tema {
+.pregunta, .reunion-tema, .reunion-result {
     display: block;
     font-size: large;
     font-weight: bold;
@@ -357,6 +357,7 @@ div#console {
 		},
 		redirectPage: function(){			
 			var url = $.getParameter("url");
+			var linkId = $.getParameter("link_id");
 			if(url != ''){
 				VDB.loadHtml(url, "#content-show");
 			}else{
@@ -384,7 +385,7 @@ div#console {
 			});
 		}, 
 		loadTwitterReader: function(){
-			$("#content-twitter").twitterReader({twitterUser:'valledelbit', timeRefresh:30000, numberOfTwits:5});
+			$("#content-twitter").twitterReader({twitterUser:'valledelbit', timeRefresh:60000, numberOfTwits:5});
 		}
 	};
 </script>
@@ -402,7 +403,7 @@ div#console {
 	</div>
    <div id="bd" role="main">
 		<div id="yui-main">
-			<div id="content" class="yui-b">				
+			<div id="content" class="yui-b">
 				<div class="yui-g">			
 					<div id="content-selected"></div>
 					<div id="content-left">						

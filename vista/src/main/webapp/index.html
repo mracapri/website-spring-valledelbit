@@ -262,7 +262,7 @@ div#likePage {
     padding: 35px;
     width: 600px;
 }
-.pregunta {
+.pregunta, .reunion-tema {
     display: block;
     font-size: large;
     font-weight: bold;
@@ -313,7 +313,7 @@ div#console {
 .text-publication ul {
     margin: 10px 0 0;
 }
-.text-publication .detalles-aqui {
+.text-publication .detalles-aqui, .detalles-reunion {
     color: green;
 }
 .text-publication .fuente a {
@@ -344,9 +344,15 @@ div#console {
 	
 	var VDB = {
 		loadHtml: function(url, component){
-			$(component).load(url, function(data){
-				var title = $(data).filter("title").text();
-				$("#content-selected").text(title);
+			$.ajax({
+				url: url,
+				context: document,
+				dataType: "html",
+			  	success: function(html){
+					$(component).html(html);
+			  		var title = $(html).filter("title").text();
+			  		$("#content-selected").text(title);
+				}
 			});
 		},
 		redirectPage: function(){			

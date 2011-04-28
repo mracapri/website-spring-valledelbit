@@ -108,7 +108,7 @@ public class ReunionController{
 			Model model){
 		
 		if(id == UNDEFINED_VALUE_ID){
-			model.addAttribute("error", "id es requerido ó geolocalizacion, hora, lugar, nombre_link, ponente, shortener, tags, tema ó objetivo");
+			model.addAttribute("error", "id es requerido o geolocalizacion, hora, lugar, nombre_link, ponente, shortener, tags, tema o objetivo");
 		}else{
 			try {			
 				Reunion reunion = new Reunion();

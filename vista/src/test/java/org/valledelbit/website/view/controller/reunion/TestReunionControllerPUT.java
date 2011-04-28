@@ -52,7 +52,22 @@ public class TestReunionControllerPUT {
 		// Definiendo los valores de la prueba
 		reunion = new Reunion();
 		reunion.setFecha(new Date());
-		reunion.setGeolocalizacion("<iframe class='map' width='100%' height='150' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='http://maps.google.com.mx/maps?f=q&amp;source=embed&amp;hl=es&amp;geocode=&amp;q=Utvm&amp;aq=&amp;sll=23.625269,-102.540613&amp;sspn=22.18854,28.256836&amp;ie=UTF8&amp;hq=Utvm&amp;hnear=&amp;cid=4499772947294339723&amp;ll=20.495798,-99.184184&amp;spn=0.17815,0.220757&amp;output=embed'></iframe><br /><small><a href='http://maps.google.com.mx/maps?f=q&amp;source=embed&amp;hl=es&amp;geocode=&amp;q=Utvm&amp;aq=&amp;sll=23.625269,-102.540613&amp;sspn=22.18854,28.256836&amp;ie=UTF8&amp;hq=Utvm&amp;hnear=&amp;cid=4499772947294339723&amp;ll=20.495798,-99.184184&amp;spn=0.17815,0.220757' style='color:#0000FF;text-align:left'>Ver mapa más grande</a></small>");
+		String mapa = "<iframe class='map' width='100%' height='150' " +
+			"frameborder='0' scrolling='no' marginheight='0' " +
+			"marginwidth='0' src='http://maps.google.com.mx/maps?" +
+			"f=q&amp;source=embed&amp;hl=es&amp;geocode=&amp;q=" +
+			"Utvm&amp;aq=&amp;sll=23.625269,-102.540613&amp;sspn=" +
+			"22.18854,28.256836&amp;ie=UTF8&amp;hq=Utvm&amp;hnear=" +
+			"&amp;cid=4499772947294339723&amp;ll=20.495798,-99.184" +
+			"184&amp;spn=0.17815,0.220757&amp;output=embed'>" +
+			"</iframe><br /><small><a href='http://maps.google.com." +
+			"mx/maps?f=q&amp;source=embed&amp;hl=es&amp;geocode=&amp" +
+			";q=Utvm&amp;aq=&amp;sll=23.625269,-102.540613&amp;sspn=22" +
+			".18854,28.256836&amp;ie=UTF8&amp;hq=Utvm&amp;hnear=&amp;ci" +
+			"d=4499772947294339723&amp;ll=20.495798,-99.184184&amp;spn=0" +
+			".17815,0.220757' style='color:#0000FF;text-align:left'>Ver " +
+			"mapa más grande</a></small>";
+		reunion.setGeolocalizacion(mapa);
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
 		reunion.setNombreLink("jquery-web");

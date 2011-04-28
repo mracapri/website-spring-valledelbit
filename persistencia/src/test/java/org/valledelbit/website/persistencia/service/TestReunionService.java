@@ -45,7 +45,7 @@ public class TestReunionService implements TestPrincipales{
 			".18854,28.256836&amp;ie=UTF8&amp;hq=Utvm&amp;hnear=&amp;ci" +
 			"d=4499772947294339723&amp;ll=20.495798,-99.184184&amp;spn=0" +
 			".17815,0.220757' style='color:#0000FF;text-align:left'>Ver " +
-			"mapa más grande</a></small>";
+			"mapa m&aacutes grande</a></small>";
 		reunion.setGeolocalizacion(mapa);
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
@@ -95,7 +95,7 @@ public class TestReunionService implements TestPrincipales{
 			".18854,28.256836&amp;ie=UTF8&amp;hq=Utvm&amp;hnear=&amp;ci" +
 			"d=4499772947294339723&amp;ll=20.495798,-99.184184&amp;spn=0" +
 			".17815,0.220757' style='color:#0000FF;text-align:left'>Ver " +
-			"mapa más grande</a></small>";
+			"mapa m&aacutes grande</a></small>";
 		reunion.setGeolocalizacion(mapa);
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
@@ -154,7 +154,7 @@ public class TestReunionService implements TestPrincipales{
 			".18854,28.256836&amp;ie=UTF8&amp;hq=Utvm&amp;hnear=&amp;ci" +
 			"d=4499772947294339723&amp;ll=20.495798,-99.184184&amp;spn=0" +
 			".17815,0.220757' style='color:#0000FF;text-align:left'>Ver " +
-			"mapa más grande</a></small>";
+			"mapa m&aacutes grande</a></small>";
 		reunion.setGeolocalizacion(mapa);
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
@@ -209,7 +209,7 @@ public class TestReunionService implements TestPrincipales{
 			".18854,28.256836&amp;ie=UTF8&amp;hq=Utvm&amp;hnear=&amp;ci" +
 			"d=4499772947294339723&amp;ll=20.495798,-99.184184&amp;spn=0" +
 			".17815,0.220757' style='color:#0000FF;text-align:left'>Ver " +
-			"mapa más grande</a></small>";
+			"mapa m&aacutes grande</a></small>";
 		reunion.setGeolocalizacion(mapa);
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
@@ -265,7 +265,7 @@ public class TestReunionService implements TestPrincipales{
 			".18854,28.256836&amp;ie=UTF8&amp;hq=Utvm&amp;hnear=&amp;ci" +
 			"d=4499772947294339723&amp;ll=20.495798,-99.184184&amp;spn=0" +
 			".17815,0.220757' style='color:#0000FF;text-align:left'>Ver " +
-			"mapa más grande</a></small>";
+			"mapa m&aacutes grande</a></small>";
 		reunion.setGeolocalizacion(mapa);
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");

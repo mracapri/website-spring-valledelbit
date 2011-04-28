@@ -72,55 +72,81 @@
 .reunion-result {
     text-transform: uppercase;
 }
+.map {
+    width: 100%;
+    height: 150px;
+}
 </style>
 
 <script type="text/javascript">
 $().ready(function(){
-	var linkId = $.getParameter("link_id");
-	var url = "resolver/reunion/all";
-	if(linkId != ''){
-		url = "resolver/reunion/get?id=" + linkId;
-	}
-	$.ajax({
-		type: 'GET',
-		url: url,
-		dataType: 'json',
-		success: function(data){
-			if(data.hasOwnProperty('reuniones')){
-				$.each(data.reuniones,function(key, reunion){
-					var plantilla = $('#reuniones #clone').clone();
-					$(plantilla).attr("id","clone" + reunion.id)
-					$(plantilla).find(".reunion-tema").html(reunion.tema);
-					$(plantilla).find(".reunion-objetivo").html(reunion.objetivo);					
-					$(plantilla).find("#reunion-value").html(reunion.tema);
-					$(plantilla).find("#ponente-value").html(reunion.ponente);
-					$(plantilla).find("#lugar-value").html(reunion.lugar);
-					$(plantilla).find("#fecha-value").html(reunion.fecha);
-					$(plantilla).find("#hora-value").html(reunion.hora);
-					$(plantilla).find("#geo-value").html(reunion.geolocalizacion);					
-					$(plantilla).appendTo($("#reuniones")).show();
-				});
-			}else if(data.hasOwnProperty('reunion')){
-					var plantilla = $('#reuniones #clone').clone();
-					$(plantilla).attr("id","clone" + data.reunion.id)
-					$(plantilla).find(".reunion-tema").html(data.reunion.tema);
-					$(plantilla).find(".reunion-objetivo").html(data.reunion.objetivo);					
-					$(plantilla).find("#reunion-value").html(data.reunion.tema);
-					$(plantilla).find("#ponente-value").html(data.reunion.ponente);
-					$(plantilla).find("#lugar-value").html(data.reunion.lugar);
-					$(plantilla).find("#fecha-value").html(data.reunion.fecha);
-					$(plantilla).find("#hora-value").html(data.reunion.hora);
-					$(plantilla).find("#geo-value").html(data.reunion.geolocalizacion);					
-					$(plantilla).appendTo($("#reuniones")).show();			
-			}else if(data.hasOwnProperty('result')){
-				var plantillaResult = $('#reuniones #clone-result').clone();
-				$(plantillaResult).find(".reunion-result").html(data.result);
-				$(plantillaResult).appendTo($("#reuniones")).show();
-			}else if(data.hasOwnProperty('error')){
-				alert(data.error);
+
+	var VDBReuniones = {
+		construyePlantillaReunion : function(plantilla, reunion){
+			$(plantilla).attr("id","clone" + reunion.id)
+			$(plantilla).find(".reunion-tema").html(reunion.tema);
+			$(plantilla).find(".reunion-objetivo").html(reunion.objetivo);					
+			$(plantilla).find("#reunion-value").html(reunion.tema);
+			$(plantilla).find("#ponente-value").html(reunion.ponente);
+			$(plantilla).find("#lugar-value").html(reunion.lugar);
+			$(plantilla).find("#fecha-value").html(reunion.fecha);
+			$(plantilla).find("#hora-value").html(reunion.hora);
+			$(plantilla).find("#geo-value").html(reunion.geolocalizacion);
+			$(plantilla).find("#social-web-twitter").html(VDBReuniones.getTwitterLinkSocial(reunion));
+			$(plantilla).find("#social-web-facebook").html(VDBReuniones.getFacebookLinkSocial(reunion));
+			$(plantilla).find('iframe[src^=http://maps.google.com]').attr("class","map");
+			return plantilla;
+		},
+		cargaReuniones: function(){
+			var linkId = $.getParameter("link_id");
+			var url = "resolver/reunion/all";
+			if(linkId != ''){
+				url = "resolver/reunion/get?id=" + linkId;
 			}
-		}		
-	});
+			$.ajax({
+				type: 'GET',
+				url: url,
+				dataType: 'json',
+				success: function(data){
+					if(data.hasOwnProperty('reuniones')){
+						$.each(data.reuniones,function(key, reunion){
+							var plantillaConstruida = VDBReuniones.construyePlantillaReunion($('#reuniones #clone').clone(), reunion);
+							$(plantillaConstruida).appendTo($("#reuniones")).show();
+						});
+					}else if(data.hasOwnProperty('reunion')){
+							var plantillaConstruida = VDBReuniones.construyePlantillaReunion($('#reuniones #clone').clone(), data.reunion);					
+							$(plantillaConstruida).appendTo($("#reuniones")).show();			
+					}else if(data.hasOwnProperty('result')){
+						var plantillaResult = $('#reuniones #clone-result').clone();
+						$(plantillaResult).find(".reunion-result").html(data.result);
+						$(plantillaResult).appendTo($("#reuniones")).show();
+					}else if(data.hasOwnProperty('error')){
+						alert(data.error);
+					}
+				}
+			});
+		},
+		getTwitterLinkSocial: function(reunion){
+			var twitterSocialLink = "<a href='http://twitter.com/share' class='twitter-share-button' ";
+			twitterSocialLink = twitterSocialLink + "data-url='" + VDBReuniones.getUrlLinkReunion(reunion) + "' ";
+			twitterSocialLink = twitterSocialLink + "data-via='valledelbit' ";
+			twitterSocialLink = twitterSocialLink + "data-text='" + reunion.tema + "' ";
+			twitterSocialLink = twitterSocialLink + "data-related='anywhere:The Javascript API' ";
+			twitterSocialLink = twitterSocialLink + "data-count='vertical'>Tweet</a>";
+			return twitterSocialLink;
+		},
+		getFacebookLinkSocial: function(reunion){
+			var src = "http://www.facebook.com/plugins/comments.php?href=" + VDBReuniones.getUrlLinkReunion(reunion) + "&permalink=1";
+			var facebookSocialLink = "<iframe src='" + src + "' scrolling='no' frameborder='0' ";
+			facebookSocialLink = facebookSocialLink + "style='border:none; overflow:hidden; width:130px; height:16px;'";
+			facebookSocialLink = facebookSocialLink + "allowTransparency='true'></iframe>";
+			return facebookSocialLink;
+		},
+		getUrlLinkReunion: function(reunion){ 
+			return "http://localhost:8080/valledelbit-vista-website/?url=pages/reuniones.html&link_id=" + reunion.id;
+		}
+	};
+	VDBReuniones.cargaReuniones();
 });
 </script>
 
@@ -138,26 +164,21 @@ $().ready(function(){
 			
 			<!-- Begin social -->
 			<div class="reunion-view">
-				<div class="reunion-social">				
-					<div class="social-web">
-						<!-- 
-							BEGIN 
-							Solo modificar el valor data-url de la URL y establecer el destino del contenido
-						-->
-					   <a href="http://twitter.com/share" class="twitter-share-button"
-						  data-url="http://valledelbit.org/reunion/redes-sociales"
-						  data-via="valledelbit"
-						  data-text="Valle del Bit - Reunion - Redes Sociales"
-						  data-related="anywhere:The Javascript API"
-						  data-count="vertical">Tweet</a>					  
-						<!-- END -->
+				<div class="reunion-social">
+					<!-- 
+						BEGIN 
+						Solo modificar el valor data-url de la URL y establecer el destino del contenido
+					-->
+					<div id="social-web-twitter" class="social-web">					  					
 					</div>
-					<div class="social-web">
+					<!-- END -->
+					
+					
+					<div id="social-web-facebook" class="social-web">
 						<!-- 
 							BEGIN 
 							Solo modificar el valor href de la URL y establecer el destino del contenido
-						-->
-						<iframe src="http://www.facebook.com/plugins/comments.php?href=example.com&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowTransparency="true"></iframe> 
+						-->						 
 						<!-- END -->
 					</div>
 				</div>

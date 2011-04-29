@@ -8,7 +8,10 @@
 	<bean id="propertyConfigurer" scope="singleton" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">    
 		<property name="properties">
       		<props>
-        		<prop key="DATE_PATTERN">yyyy-MM-dd</prop>  
+        		<prop key="DATE_PATTERN">yyyy-MM-dd</prop>
+        		<prop key="API_KEY_BIT_LY">R_f36408d0b6a76a67a160ff36a5253c47</prop>
+        		<prop key="API_URL_BIT_LY_SHORTENER_SERVICE">http://api.bitly.com/v3/shorten</prop>
+        		<prop key="BIT_LY_USER_LOGIN">valledelbit</prop>
       		</props>
     	</property>
 	</bean>

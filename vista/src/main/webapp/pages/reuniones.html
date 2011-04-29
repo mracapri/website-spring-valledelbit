@@ -66,8 +66,9 @@
     text-align: center;
 }
 .social-web {
-    display: inline;
-    padding: 0 10px 0 10px;
+    display: table-cell;
+    padding: 0 10px;
+    vertical-align: top;
 }
 .reunion-result {
     text-transform: uppercase;
@@ -136,10 +137,9 @@ $().ready(function(){
 			return twitterSocialLink;
 		},
 		getFacebookLinkSocial: function(reunion){
-			var src = "http://www.facebook.com/plugins/comments.php?href=" + VDBReuniones.getUrlLinkReunion(reunion) + "&permalink=1";
+			var src = "http://www.facebook.com/plugins/like.php?href=" + VDBReuniones.getUrlLinkReunion(reunion);
 			var facebookSocialLink = "<iframe src='" + src + "' scrolling='no' frameborder='0' ";
-			facebookSocialLink = facebookSocialLink + "style='border:none; overflow:hidden; width:130px; height:16px;'";
-			facebookSocialLink = facebookSocialLink + "allowTransparency='true'></iframe>";
+			facebookSocialLink = facebookSocialLink + "<iframe id='fblike' src='" + src + "' scrolling='no' frameborder='0'></iframe>";			
 			return facebookSocialLink;
 		},
 		getUrlLinkReunion: function(reunion){ 

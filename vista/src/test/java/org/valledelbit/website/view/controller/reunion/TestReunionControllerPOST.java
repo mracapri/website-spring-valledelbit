@@ -106,7 +106,12 @@ public class TestReunionControllerPOST {
 		log.debug(reuniones);
 		
 		// Obteniendo reunion modificada
-		Reunion leida = reuniones.get(0);
+		int index = 0;
+		if(reuniones.size() > 0){
+			index = reuniones.size()-1;
+		}
+		
+		Reunion leida = reuniones.get(index);
 		
 		boolean result =  leida.getGeolocalizacion().equals(reunion.getGeolocalizacion());
 		result = result && leida.getFecha().toString().equals(fechaReunion); 

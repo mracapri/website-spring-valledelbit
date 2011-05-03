@@ -8,6 +8,7 @@
 	<script type='text/javascript' src='js/jquery-1.4.2.min.js'></script>
 	<script type='text/javascript' src='js/jquery.timers.js'></script>	
 	<script type='text/javascript' src='js/jquery-ui-1.8.6.custom.min.js'></script>
+	<script type='text/javascript' src='http://www.serpere.info/jquery-history-plugin/jquery.history.js'></script>
 	
 	<!-- Librerias de  Valle del bit-->
 	<script type='text/javascript' src='js/areafiveone-twitter-reader-1.0.0-SNAPSHOT.min.js'></script>	
@@ -338,7 +339,14 @@ div#console {
 		VDB.defineLinkAjax();		
 		
 		/* Load Twitter Rader for ValleDelBit */
-		VDB.loadTwitterReader();		
+		VDB.loadTwitterReader();
+
+	    $.history.init(function(hash){
+	        if(hash != "") {
+	        	VDB.loadHtml(hash, "#content-show");	            
+	        }
+	    },
+	    { unescape: ",/" });
 				
 	});
 	
@@ -352,6 +360,7 @@ div#console {
 					$(component).html(html);
 			  		var title = $(html).filter("title").text();
 			  		$("#content-selected").text(title);
+			  		$.history.load(url);
 				}
 			});
 		},
@@ -385,7 +394,7 @@ div#console {
 			});
 		}, 
 		loadTwitterReader: function(){
-			$("#content-twitter").twitterReader({twitterUser:'valledelbit', timeRefresh:60000, numberOfTwits:5});
+			$("#content-twitter").twitterReader({twitterUser:'mra_capri', timeRefresh:60000, numberOfTwits:5});
 		}
 	};
 </script>

@@ -146,7 +146,6 @@ div#content-left .link-option {
     border: 0 none;
 }
 div#content-left {
-    border: 1px solid yellow;
     height: 100%;
     margin: 1px;
     padding: 10px;
@@ -233,9 +232,13 @@ div#exec:hover {
 }
 textarea#bash {
     font-family: Courier New;
-    height: 80%;
+    height: 60%;
     position: absolute;
     width: 93%;
+    max-height: 60%;
+    min-height: 60%;
+    max-width: 93%;
+    min-width: 93%;
 }
 div#content-show {
     display: block;
@@ -293,9 +296,15 @@ div#console {
     top: 80px;
     width: 330px;
 }
+.console-message {
+    color: red;
+    display: block;
+    position: relative;
+    top: 170px;
+}
 .console-buttons {
     position: relative;
-    top: 210px;
+    top: 175px;
     width: 100%;
 }
 .console-button {
@@ -472,7 +481,8 @@ div#console {
 		<span id="derechos">Todos los Derechos son reservados por Valle del Bit 2011</span>
    </div>
    <div id="console">
-		<textarea id="bash">$("#console").hide()</textarea>				
+		<textarea id="bash">$().jquery</textarea>
+		<span class="console-message">Por favor abre la consola web de tu navegador para ver los resultados</span>				
 		<ul class="console-buttons">
 			<li id="exec" class="console-button">Ejecutar</li>
 			<li id="hide" class="console-button">0cultar</li>

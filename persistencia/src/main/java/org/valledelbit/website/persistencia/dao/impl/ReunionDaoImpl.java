@@ -111,6 +111,36 @@ public class ReunionDaoImpl extends JdbcTemplate implements ReunionDao {
 	}
 	
 	@Override
+	public Reunion read(String nombreLink) {
+		String sql = "SELECT * FROM REUNION WHERE NOMBRE_LINK = ?";
+		try {
+			Reunion resultado = this.queryForObject(sql, new Object[]{nombreLink},
+			new RowMapper<Reunion>(){
+				@Override
+				public Reunion mapRow(ResultSet rs, int rowNum)
+						throws SQLException {
+					Reunion reunion = new Reunion();
+					reunion.setId(rs.getInt("ID"));
+					reunion.setTema(rs.getString("TEMA"));
+					reunion.setFecha(rs.getDate("FECHA"));
+					reunion.setHora(rs.getString("HORA"));
+					reunion.setLugar(rs.getString("LUGAR"));
+					reunion.setPonente(rs.getString("PONENTE"));
+					reunion.setGeolocalizacion(rs.getString("GEOLOCALIZACION"));
+					reunion.setNombreLink(rs.getString("NOMBRE_LINK"));
+					reunion.setShortener(rs.getString("SHORTENER"));
+					reunion.setTags(rs.getString("TAGS"));
+					reunion.setObjetivo(rs.getString("OBJETIVO"));
+					return reunion;
+				}
+			});
+			return resultado;
+		} catch (EmptyResultDataAccessException accessException) {
+			return null;
+		}		
+	}
+	
+	@Override
 	public void shutdown() {
 		this.execute("SHUTDOWN");		
 	}

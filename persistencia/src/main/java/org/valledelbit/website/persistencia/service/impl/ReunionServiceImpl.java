@@ -33,6 +33,11 @@ public class ReunionServiceImpl implements ReunionService{
 	}
 	
 	@Override
+	public Reunion getReunion(String nombreLink) throws ValleDelBitWebSiteException {
+		return this.reunionDao.read(nombreLink);
+	}
+	
+	@Override
 	public void removeReunion(Reunion reunion)
 			throws ValleDelBitWebSiteException {
 		reunionDao.delete(reunion);

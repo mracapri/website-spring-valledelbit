@@ -23,6 +23,7 @@ import org.valledelbit.website.persistencia.vo.Reunion;
 public class ReunionController{
 	
 	private static final int UNDEFINED_VALUE_ID = -1;
+	private static final String UNDEFINED_VALUE_NOMBRE_LINK = "undefined";
 
 	protected final Log log = LogFactory.getLog(getClass());	
 	
@@ -34,23 +35,39 @@ public class ReunionController{
 
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	public String getReunion(
-			@RequestParam(value="id", required=true, defaultValue="-1") int id, 
+			@RequestParam(value="id", required=true, defaultValue="-1") int id,
+			@RequestParam(value="nombre_link", required=true, defaultValue=UNDEFINED_VALUE_NOMBRE_LINK) String nombreLink,
 			Model model){
 		
-		if(id == UNDEFINED_VALUE_ID){
-			model.addAttribute("error", "id es requerido");
-		}else{
-			try {			
-				Reunion reunion = reunionService.getReunion(id);
+		boolean validParameters = true; 
+		
+		try {
+			Reunion reunion = null;
+			if(id == UNDEFINED_VALUE_ID){
+				validParameters = false;
+				if(nombreLink.equals(UNDEFINED_VALUE_NOMBRE_LINK)){
+					validParameters = false;
+				}else{
+					validParameters = true;
+					reunion = reunionService.getReunion(nombreLink);
+				}
+			}else{				
+				reunion = reunionService.getReunion(id);				
+			}
+
+			if(validParameters){
 				if(reunion == null){
 					model.addAttribute("result", "la reunion no existe en el catalogo");
 				}else{
 					model.addAttribute("reunion",reunion);	
 				}
-			} catch (ValleDelBitWebSiteException e) {
-				model.addAttribute("error", e.getMessage());
+			}else{
+				model.addAttribute("error", "especifique el parametro id o nombre_link");
 			}
+		} catch (ValleDelBitWebSiteException e) {
+			model.addAttribute("error", e.getMessage());
 		}
+		
 		log.debug(model);
 		return "jsonView";
 	}

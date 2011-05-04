@@ -9,6 +9,7 @@ public interface ReunionService {
 	void setReunion(Reunion reunion) throws ValleDelBitWebSiteException;
 	List<Reunion> getReuniones() throws ValleDelBitWebSiteException;
 	Reunion getReunion(int id) throws ValleDelBitWebSiteException;
+	Reunion getReunion(String nombreLink) throws ValleDelBitWebSiteException;
 	void removeReunion(Reunion reunion) throws ValleDelBitWebSiteException;
 	void updateReunion(Reunion reunion) throws ValleDelBitWebSiteException;
 }

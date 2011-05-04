@@ -129,6 +129,53 @@ public class TestReunionControllerGET {
 		log.debug(modelAndView2);
 		
 	}
+	
+	@Test
+	public void testObteniendoReunionPorNombreLink() throws Exception{
+
+		String fechaReunion = "2011-05-23";
+		
+		// Pasando valores al request
+		
+		request.addParameter("geolocalizacion", reunion.getGeolocalizacion());
+		request.addParameter("fecha", fechaReunion);
+		request.addParameter("hora", reunion.getHora());
+		request.addParameter("lugar", reunion.getLugar());
+		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.addParameter("ponente", reunion.getPonente());
+		request.addParameter("shortener", reunion.getShortener());
+		request.addParameter("tags", reunion.getTags());
+		request.addParameter("tema", reunion.getTema());
+		request.addParameter("objetivo", reunion.getObjetivo());
+				
+		/*
+		 * Persistiendo reunion desde controller
+		 * */
+		
+		// Estableciendo URI
+		request.setMethod("POST");
+		request.setRequestURI("/reunion/set");
+		
+		final ModelAndView modelAndView = handlerAdapter.handle(request, response, reunionController);
+		
+		
+		setUp();
+		
+		/*
+		 * Consultando reunion desde controller
+		 * */		
+		
+		// Estableciendo URI con el valor de nombre_link para obtener la reunion
+		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.setMethod("GET");
+		request.setRequestURI("/reunion/get");
+		log.debug(ToStringBuilder.reflectionToString(request));
+		
+		final ModelAndView modelAndView2 = handlerAdapter.handle(request, response, reunionController);
+		Assert.assertNotNull(modelAndView2.getModel().get("reunion"));
+		log.debug(modelAndView2);
+		
+	}
 
 	@Test
 	public void testObteniendoReunionPorIdInexistente() throws Exception{

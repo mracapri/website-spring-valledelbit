@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<mvc:annotation-driven />
-	<context:component-scan base-package="org.valledelbit.website.view.controller" />
+	<context:component-scan base-package="org.valledelbit.website.view" />
 	
 	<import resource="AppCtx-SpringMVC-View.xml" />
 	<import resource="AppCtx-SpringMVC-Properties.xml" />

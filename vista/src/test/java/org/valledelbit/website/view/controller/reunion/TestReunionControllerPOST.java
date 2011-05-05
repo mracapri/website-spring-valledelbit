@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.valledelbit.website.persistencia.service.ReunionService;
 import org.valledelbit.website.persistencia.vo.Reunion;
 import org.valledelbit.website.view.controller.ReunionController;
+import org.valledelbit.website.view.service.ShortenerService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
@@ -35,6 +36,8 @@ public class TestReunionControllerPOST {
 	HandlerAdapter handlerAdapter;	
 	@Autowired
 	ReunionService reunionService;
+	@Autowired
+	ShortenerService shortenerService;
 	
     MockHttpServletRequest request;
     MockHttpServletResponse response;

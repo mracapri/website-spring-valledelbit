@@ -1,4 +1,4 @@
-package org.valledelbit.website.view.controller;
+package org.valledelbit.website.view.service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -9,21 +9,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Service;
+import org.valledelbit.website.persistencia.exception.ValleDelBitWebSiteException;
+import org.valledelbit.website.view.service.ShortenerService;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
-
-@Controller
-@RequestMapping("/shortener")
-public class ShortenerController{
+@Service
+public class ShortenerServiceImpl implements ShortenerService{
 	
 	private static final String BLANK_STRING = "";
-	private static final String UNDEFINED_VALUE_LONG_URL = "undefined";
 
 	protected final Log log = LogFactory.getLog(getClass());
 	
@@ -36,17 +31,13 @@ public class ShortenerController{
 	@Value("${BIT_LY_USER_LOGIN}")
 	String bitLyUserLogin;	
 	
-	@RequestMapping(value="/doit", method = RequestMethod.GET)
-	public String shortenerLongUrl(
-			@RequestParam(value="long_url", required=true, defaultValue=UNDEFINED_VALUE_LONG_URL) String longUrl, 
-			Model model){
-		
-		if(longUrl.equals(UNDEFINED_VALUE_LONG_URL) || longUrl.equals(BLANK_STRING)){
-			model.addAttribute("error", "long_url es requerida");
+	public String shortenerLongUrl(String longUrl) throws ValleDelBitWebSiteException{
+		String shortUrl = null;
+		if(longUrl.equals(BLANK_STRING)){
+			throw new ValleDelBitWebSiteException("long_url es requerida");
 		}else{
 			Client client = Client.create();
-			try {
-				
+			try {				
 				longUrl = URLEncoder.encode(longUrl, "UTF-8");
 				WebResource resource = client.resource(apiUrlBitLyShortenerService)
 				.queryParam("login", bitLyUserLogin)
@@ -54,17 +45,19 @@ public class ShortenerController{
 				.queryParam("longUrl", longUrl);
 
 				String json = resource.get(String.class);				
-				JSONObject jsonObject = (JSONObject) new JSONParser().parse(json);		
-				model.addAttribute("result", jsonObject);
+				JSONObject jsonObject = (JSONObject) new JSONParser().parse(json);
+				String data = jsonObject.get("data").toString();
+				jsonObject = (JSONObject) new JSONParser().parse(data);				
+				
+				shortUrl = jsonObject.get("url").toString();
 				
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-		}
-		log.debug(model);
-		return "jsonView";
+		}	
+		return shortUrl;
 	}
 
 }

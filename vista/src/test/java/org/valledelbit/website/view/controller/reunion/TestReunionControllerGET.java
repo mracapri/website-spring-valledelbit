@@ -71,7 +71,6 @@ public class TestReunionControllerGET {
 		reunion.setGeolocalizacion(mapa);
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
-		reunion.setNombreLink("jquery-web");
 		reunion.setPonente("Cesar Ceron Perez");
 		reunion.setShortener("http://bit.ly/Er4534");
 		reunion.setTags("['jquery','web']");
@@ -81,7 +80,7 @@ public class TestReunionControllerGET {
     
 	@Test
 	public void testObteniendoReunionPorId() throws Exception{
-
+		String nombreLink = "testObteniendoReunionPorId";
 		String fechaReunion = "2011-05-23";
 		
 		// Pasando valores al request
@@ -90,7 +89,7 @@ public class TestReunionControllerGET {
 		request.addParameter("fecha", fechaReunion);
 		request.addParameter("hora", reunion.getHora());
 		request.addParameter("lugar", reunion.getLugar());
-		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
 		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());
@@ -132,7 +131,7 @@ public class TestReunionControllerGET {
 	
 	@Test
 	public void testObteniendoReunionPorNombreLink() throws Exception{
-
+		String nombreLink = "testObteniendoReunionPorNombreLink";
 		String fechaReunion = "2011-05-23";
 		
 		// Pasando valores al request
@@ -141,7 +140,7 @@ public class TestReunionControllerGET {
 		request.addParameter("fecha", fechaReunion);
 		request.addParameter("hora", reunion.getHora());
 		request.addParameter("lugar", reunion.getLugar());
-		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
 		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());
@@ -166,7 +165,7 @@ public class TestReunionControllerGET {
 		 * */		
 		
 		// Estableciendo URI con el valor de nombre_link para obtener la reunion
-		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.addParameter("nombre_link", nombreLink);
 		request.setMethod("GET");
 		request.setRequestURI("/reunion/get");
 		log.debug(ToStringBuilder.reflectionToString(request));
@@ -198,6 +197,7 @@ public class TestReunionControllerGET {
 	
 	@Test
 	public void testObteniendoTodasLasReuniones() throws Exception{
+		String nombreLink = "testObteniendoTodasLasReuniones";
 		String fechaReunion = "2011-05-23";
 		/*
 		 * Consultando reunion desde controller
@@ -218,7 +218,7 @@ public class TestReunionControllerGET {
 		request.addParameter("fecha", fechaReunion);
 		request.addParameter("hora", reunion.getHora());
 		request.addParameter("lugar", reunion.getLugar());
-		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
 		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());

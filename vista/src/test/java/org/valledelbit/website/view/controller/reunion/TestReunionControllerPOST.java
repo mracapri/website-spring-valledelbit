@@ -68,7 +68,6 @@ public class TestReunionControllerPOST {
 		reunion.setGeolocalizacion(mapa);
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
-		reunion.setNombreLink("jquery-web");
 		reunion.setPonente("Cesar Ceron Perez");
 		reunion.setShortener("http://bit.ly/Er4534");
 		reunion.setTags("['jquery','web']");
@@ -78,6 +77,7 @@ public class TestReunionControllerPOST {
     
 	@Test
 	public void testPasandoTodosLosValores() throws Exception{
+		String nombreLink = "testPasandoTodosLosValores";
 		String fechaReunion = "2011-05-23";
 		// Pasando valores al request
 		
@@ -85,7 +85,7 @@ public class TestReunionControllerPOST {
 		request.addParameter("fecha", fechaReunion);
 		request.addParameter("hora", reunion.getHora());
 		request.addParameter("lugar", reunion.getLugar());
-		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
 		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());
@@ -117,7 +117,7 @@ public class TestReunionControllerPOST {
 		result = result && leida.getFecha().toString().equals(fechaReunion); 
 		result = result && leida.getHora().equals(reunion.getHora());
 		result = result && leida.getLugar().equals(reunion.getLugar());
-		result = result && leida.getNombreLink().equals(reunion.getNombreLink());
+		result = result && leida.getNombreLink().equals(nombreLink);
 		result = result && leida.getPonente().equals(reunion.getPonente());
 		result = result && leida.getTags().equals(reunion.getTags());
 		result = result && leida.getTema().equals(reunion.getTema());
@@ -128,6 +128,7 @@ public class TestReunionControllerPOST {
 	
 	@Test
 	public void testPasandoTodosLosValoresConFormatoDeFechaIncorrecto() throws Exception{
+		String nombreLink = "testPasandoTodosLosValoresConFormatoDeFechaIncorrecto";
 		// Fecha con formato incorrecto
 		String fechaReunion = "2011/05/23";
 		
@@ -137,7 +138,7 @@ public class TestReunionControllerPOST {
 		request.addParameter("fecha", fechaReunion);
 		request.addParameter("hora", reunion.getHora());
 		request.addParameter("lugar", reunion.getLugar());
-		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
 		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());

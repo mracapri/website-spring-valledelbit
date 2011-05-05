@@ -70,7 +70,6 @@ public class TestReunionControllerPUT {
 		reunion.setGeolocalizacion(mapa);
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
-		reunion.setNombreLink("jquery-web");
 		reunion.setPonente("Cesar Ceron Perez");
 		reunion.setShortener("http://bit.ly/Er4534");
 		reunion.setTags("['jquery','web']");
@@ -80,6 +79,7 @@ public class TestReunionControllerPUT {
     
 	@Test
 	public void testModificandoReunion() throws Exception{
+		String nombreLink = "testModificandoReunion";
 		String fechaReunion = "2011-05-23";
 		// Pasando valores al request
 		
@@ -87,7 +87,7 @@ public class TestReunionControllerPUT {
 		request.addParameter("fecha", fechaReunion);
 		request.addParameter("hora", reunion.getHora());
 		request.addParameter("lugar", reunion.getLugar());
-		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
 		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());
@@ -175,6 +175,7 @@ public class TestReunionControllerPUT {
 	
 	@Test
 	public void testModificandoReunionConFormatoDeFechaIncorrecto() throws Exception{
+		String nombreLink = "testModificandoReunionConFormatoDeFechaIncorrecto";
 		String fechaReunion = "2011-05-23";
 		// Pasando valores al request
 		
@@ -182,7 +183,7 @@ public class TestReunionControllerPUT {
 		request.addParameter("fecha", fechaReunion);
 		request.addParameter("hora", reunion.getHora());
 		request.addParameter("lugar", reunion.getLugar());
-		request.addParameter("nombre_link", reunion.getNombreLink());
+		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
 		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());

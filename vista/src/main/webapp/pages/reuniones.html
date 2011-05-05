@@ -99,16 +99,16 @@ $().ready(function(){
 			return plantilla;
 		},
 		cargaReuniones: function(){
-			var linkId = $.getParameter("link_id");
+			var nombreLink = $.getParameter("nombre_link");
 			var url = "resolver/reunion/all";
-			if(linkId != ''){
-				url = "resolver/reunion/get?id=" + linkId;
+			if(nombreLink != ''){
+				url = "resolver/reunion/get?nombre_link=" + nombreLink;
 			}
 			$.ajax({
 				type: 'GET',
 				url: url,
 				dataType: 'json',
-				success: function(data){
+				success: function(data){					
 					if(data.hasOwnProperty('reuniones')){
 						$.each(data.reuniones,function(key, reunion){
 							var plantillaConstruida = VDBReuniones.construyePlantillaReunion($('#reuniones #clone').clone(), reunion);
@@ -129,7 +129,7 @@ $().ready(function(){
 		},
 		getTwitterLinkSocial: function(reunion){
 			var twitterSocialLink = "<a href='http://twitter.com/share' class='twitter-share-button' ";
-			twitterSocialLink = twitterSocialLink + "data-url='" + VDBReuniones.getUrlLinkReunion(reunion) + "' ";
+			twitterSocialLink = twitterSocialLink + "data-url='" + escape(VDBReuniones.getUrlLinkReunion(reunion)) + "' ";
 			twitterSocialLink = twitterSocialLink + "data-via='valledelbit' ";
 			twitterSocialLink = twitterSocialLink + "data-text='" + reunion.tema + "' ";
 			twitterSocialLink = twitterSocialLink + "data-related='anywhere:The Javascript API' ";
@@ -137,7 +137,7 @@ $().ready(function(){
 			return twitterSocialLink;
 		},
 		getFacebookLinkSocial: function(reunion){
-			var src = "http://www.facebook.com/plugins/like.php?href=" + VDBReuniones.getUrlLinkReunion(reunion);
+			var src = "http://www.facebook.com/plugins/like.php?href=" + escape(VDBReuniones.getUrlLinkReunion(reunion));
 			var facebookSocialLink = "<iframe src='" + src + "' scrolling='no' frameborder='0' ";
 			facebookSocialLink = facebookSocialLink + "<iframe id='fblike' src='" + src + "' scrolling='no' frameborder='0'></iframe>";			
 			return facebookSocialLink;

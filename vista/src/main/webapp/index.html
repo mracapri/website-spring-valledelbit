@@ -352,7 +352,7 @@ div#console {
 
 	    $.history.init(function(hash){
 	        if(hash != "") {
-	        	VDB.loadHtml(hash, "#content-show");	            
+	        	VDB.loadHtml(hash);					
 	        }
 	    },
 	    { unescape: ",/" });
@@ -360,26 +360,24 @@ div#console {
 	});
 	
 	var VDB = {
-		loadHtml: function(url, component){
+		loadHtml: function(url){
 			$.ajax({
 				url: url,
 				context: document,
 				dataType: "html",
 			  	success: function(html){
-					$(component).html(html);
+					$("#content-show").html(html);
 			  		var title = $(html).filter("title").text();
 			  		$("#content-selected").text(title);
-			  		$.history.load(url);
 				}
 			});
 		},
 		redirectPage: function(){			
 			var url = $.getParameter("url");
-			var linkId = $.getParameter("link_id");
 			if(url != ''){
-				VDB.loadHtml(url, "#content-show");
+				$.history.load(url);
 			}else{
-				VDB.loadHtml("pages/acerca-de.html", "#content-show");
+				$.history.load("pages/acerca-de.html");
 			}
 		},
 		initConsole: function(){
@@ -398,7 +396,7 @@ div#console {
 		defineLinkAjax: function(){
 			$(".open-link, .detalles-aqui").live('click', function(element){
 				var url = $(this).attr("href");
-				VDB.loadHtml(url, "#content-show");
+				$.history.load(url);
 				return false;
 			});
 		}, 

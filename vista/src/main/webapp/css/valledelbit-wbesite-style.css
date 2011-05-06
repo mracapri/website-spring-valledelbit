@@ -20,7 +20,7 @@ div#content .yui-g {
     height: 800px;
 }
 body {
-    background-image: url("images/background-v2.png");
+    background-image: url("../images/background-v2.png");
     background-repeat: repeat-x;
 }
 div#hd > h1 {
@@ -178,13 +178,13 @@ span#categoria-laboratorio, span#categoria-valle, span#categoria-social {
     padding: 9px;
 }
 span#categoria-laboratorio {
-    background-image: url("images/Gnome-Applications-Science-34.png");
+    background-image: url("../images/Gnome-Applications-Science-34.png");
 }
 span#categoria-social {
-    background-image: url("images/Red_48x48.png");
+    background-image: url("../images/Red_48x48.png");
 }
 span#categoria-valle {
-    background-image: url("images/Calendar-34.png");
+    background-image: url("../images/Calendar-34.png");
 }
 li#exec {
     background-color: black;

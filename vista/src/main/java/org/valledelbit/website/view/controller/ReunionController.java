@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import static org.valledelbit.website.view.controller.util.ControllerUtils.*;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,18 +20,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.valledelbit.website.persistencia.exception.ValleDelBitWebSiteException;
 import org.valledelbit.website.persistencia.service.ReunionService;
 import org.valledelbit.website.persistencia.vo.Reunion;
+import org.valledelbit.website.view.service.ShortenerService;
 
 @Controller
 @RequestMapping("/reunion")
 public class ReunionController{
-	
-	private static final int UNDEFINED_VALUE_ID = -1;
-	private static final String UNDEFINED_VALUE_NOMBRE_LINK = "undefined";
 
-	protected final Log log = LogFactory.getLog(getClass());	
+	protected final Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
 	ReunionService reunionService;
+	
+	@Autowired
+	ShortenerService shortenerService;
 	
 	@Value("${DATE_PATTERN}")
 	String[] patronFecha;
@@ -36,16 +40,16 @@ public class ReunionController{
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	public String getReunion(
 			@RequestParam(value="id", required=true, defaultValue="-1") int id,
-			@RequestParam(value="nombre_link", required=true, defaultValue=UNDEFINED_VALUE_NOMBRE_LINK) String nombreLink,
+			@RequestParam(value="nombre_link", required=true, defaultValue=UNDEFINED) String nombreLink,
 			Model model){
 		
 		boolean validParameters = true; 
 		
 		try {
 			Reunion reunion = null;
-			if(id == UNDEFINED_VALUE_ID){
+			if(id == INTEGER_UNDEFINED){
 				validParameters = false;
-				if(nombreLink.equals(UNDEFINED_VALUE_NOMBRE_LINK)){
+				if(nombreLink.equals(UNDEFINED)){
 					validParameters = false;
 				}else{
 					validParameters = true;
@@ -65,7 +69,7 @@ public class ReunionController{
 				model.addAttribute("error", "especifique el parametro id o nombre_link");
 			}
 		} catch (ValleDelBitWebSiteException e) {
-			model.addAttribute("error", e.getMessage());
+			model.addAttribute("error", "ha ocurrido un error inesperado, por favor intente mas tarde");
 		}
 		
 		log.debug(model);
@@ -82,7 +86,7 @@ public class ReunionController{
 				model.addAttribute("reuniones",reuniones);	
 			}
 		} catch (ValleDelBitWebSiteException e) {
-			model.addAttribute("error", e.getMessage());
+			model.addAttribute("error", "ha ocurrido un error inesperado, por favor intente mas tarde");
 		}
 		log.debug(model);
 		return "jsonView";
@@ -93,7 +97,7 @@ public class ReunionController{
 			@RequestParam(value="id", required=true, defaultValue="-1") int id, 
 			Model model){
 		
-		if(id == UNDEFINED_VALUE_ID){
+		if(id == INTEGER_UNDEFINED){
 			model.addAttribute("error", "id es requerido");
 		}else{
 			try {			
@@ -102,7 +106,7 @@ public class ReunionController{
 				reunionService.removeReunion(reunion);
 				model.addAttribute("result", "la reunion ha sido removida");
 			} catch (ValleDelBitWebSiteException e) {
-				model.addAttribute("error", e.getMessage());
+				model.addAttribute("error", "ha ocurrido un error inesperado, por favor intente mas tarde");
 			}
 		}
 		log.debug(model);
@@ -112,19 +116,19 @@ public class ReunionController{
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public String updateReunion(
 			@RequestParam(value="id", required=true, defaultValue="-1") int id,
-			@RequestParam(value="geolocalizacion", required=true, defaultValue="undefined") String geolocalizacion,
-			@RequestParam(value="fecha", required=true, defaultValue="undefined") String fecha,
-			@RequestParam(value="hora", required=true, defaultValue="undefined") String hora,
-			@RequestParam(value="lugar", required=true, defaultValue="undefined") String lugar,
-			@RequestParam(value="nombre_link", required=true, defaultValue="undefined") String nombreLink,
-			@RequestParam(value="ponente", required=true, defaultValue="undefined") String ponente,
-			@RequestParam(value="shortener", required=true, defaultValue="undefined") String shortener,
-			@RequestParam(value="tags", required=true, defaultValue="undefined") String tags,
-			@RequestParam(value="tema", required=true, defaultValue="undefined") String tema,
-			@RequestParam(value="objetivo", required=true, defaultValue="undefined") String objetivo,
-			Model model){
+			@RequestParam(value="geolocalizacion", required=true, defaultValue=UNDEFINED) String geolocalizacion,
+			@RequestParam(value="fecha", required=true, defaultValue=UNDEFINED) String fecha,
+			@RequestParam(value="hora", required=true, defaultValue=UNDEFINED) String hora,
+			@RequestParam(value="lugar", required=true, defaultValue=UNDEFINED) String lugar,
+			@RequestParam(value="nombre_link", required=true, defaultValue=UNDEFINED) String nombreLink,
+			@RequestParam(value="ponente", required=true, defaultValue=UNDEFINED) String ponente,
+			@RequestParam(value="shortener", required=true, defaultValue=UNDEFINED) String shortener,
+			@RequestParam(value="tags", required=true, defaultValue=UNDEFINED) String tags,
+			@RequestParam(value="tema", required=true, defaultValue=UNDEFINED) String tema,
+			@RequestParam(value="objetivo", required=true, defaultValue=UNDEFINED) String objetivo,
+			Model model, HttpServletRequest request){
 		
-		if(id == UNDEFINED_VALUE_ID){
+		if(id == INTEGER_UNDEFINED){
 			model.addAttribute("error", "id es requerido o geolocalizacion, hora, lugar, nombre_link, ponente, shortener, tags, tema o objetivo");
 		}else{
 			try {			
@@ -137,7 +141,7 @@ public class ReunionController{
 				reunion.setLugar(lugar);
 				reunion.setNombreLink(nombreLink);
 				reunion.setPonente(ponente);
-				reunion.setShortener(shortener);
+				reunion.setShortener(getShortUrl(shortenerService, request, getReunionUrlPattern() + nombreLink));
 				reunion.setTags(tags);
 				reunion.setTema(tema);
 				reunion.setObjetivo(objetivo);
@@ -145,7 +149,7 @@ public class ReunionController{
 				reunionService.updateReunion(reunion);
 				model.addAttribute("result", "la reunion ha sido modificada");
 			} catch (ValleDelBitWebSiteException e) {
-				model.addAttribute("error", e.getMessage());
+				model.addAttribute("error", "ha ocurrido un error inesperado, por favor intente mas tarde");
 			} catch (ParseException e) {
 				model.addAttribute("error", "formato de fecha incorrecto, prueba con  YYYY-MM-DD");
 			}
@@ -156,28 +160,26 @@ public class ReunionController{
 	
 	@RequestMapping(value = "/set", method = RequestMethod.POST)
 	public String setReunion(
-			@RequestParam(value="geolocalizacion", required=true, defaultValue="undefined") String geolocalizacion,
-			@RequestParam(value="fecha", required=true, defaultValue="undefined") String fecha,
-			@RequestParam(value="hora", required=true, defaultValue="undefined") String hora,
-			@RequestParam(value="lugar", required=true, defaultValue="undefined") String lugar,
-			@RequestParam(value="nombre_link", required=true, defaultValue="undefined") String nombreLink,
-			@RequestParam(value="ponente", required=true, defaultValue="undefined") String ponente,
-			@RequestParam(value="shortener", required=true, defaultValue="undefined") String shortener,
-			@RequestParam(value="tags", required=true, defaultValue="undefined") String tags,
-			@RequestParam(value="tema", required=true, defaultValue="undefined") String tema,
-			@RequestParam(value="objetivo", required=true, defaultValue="undefined") String objetivo,
-			Model model){				
+			@RequestParam(value="geolocalizacion", required=true, defaultValue=UNDEFINED) String geolocalizacion,
+			@RequestParam(value="fecha", required=true, defaultValue=UNDEFINED) String fecha,
+			@RequestParam(value="hora", required=true, defaultValue=UNDEFINED) String hora,
+			@RequestParam(value="lugar", required=true, defaultValue=UNDEFINED) String lugar,
+			@RequestParam(value="nombre_link", required=true, defaultValue=UNDEFINED) String nombreLink,
+			@RequestParam(value="ponente", required=true, defaultValue=UNDEFINED) String ponente,
+			@RequestParam(value="tags", required=true, defaultValue=UNDEFINED) String tags,
+			@RequestParam(value="tema", required=true, defaultValue=UNDEFINED) String tema,
+			@RequestParam(value="objetivo", required=true, defaultValue=UNDEFINED) String objetivo,
+			Model model, HttpServletRequest request){
 				
-		if(geolocalizacion.equals("undefined") && 
-				hora.equals("undefined") && 
-				lugar.equals("undefined") && 
-				nombreLink.equals("undefined") &&
-				ponente.equals("undefined") && 
-				shortener.equals("undefined") && 
-				tags.equals("undefined") && 
-				tema.equals("undefined") && 
-				objetivo.equals("undefined")){
-			model.addAttribute("error", "geolocalizacion, fecha, hora, lugar, nombre_ink, ponente, shortener, tags, tema y objetivo, son requeridos");
+		if(geolocalizacion.equals(UNDEFINED) && 
+				hora.equals(UNDEFINED) && 
+				lugar.equals(UNDEFINED) && 
+				nombreLink.equals(UNDEFINED) &&
+				ponente.equals(UNDEFINED) &&  
+				tags.equals(UNDEFINED) && 
+				tema.equals(UNDEFINED) && 
+				objetivo.equals(UNDEFINED)){
+			model.addAttribute("error", "geolocalizacion, fecha, hora, lugar, nombre_ink, ponente, tags, tema y objetivo, son requeridos");
 		}else{
 			try {
 				Reunion reunion = new Reunion();
@@ -189,7 +191,7 @@ public class ReunionController{
 				reunion.setLugar(lugar);
 				reunion.setNombreLink(nombreLink);
 				reunion.setPonente(ponente);
-				reunion.setShortener(shortener);
+				reunion.setShortener(getShortUrl(shortenerService, request, getReunionUrlPattern() + nombreLink));
 				reunion.setTags(tags);
 				reunion.setTema(tema);
 				reunion.setObjetivo(objetivo);
@@ -198,7 +200,7 @@ public class ReunionController{
 				
 				model.addAttribute("result", "la reunion ha sido registrada");
 			} catch (ValleDelBitWebSiteException e) {
-				model.addAttribute("error", e.getMessage());
+				model.addAttribute("error", "ha ocurrido un error inesperado, por favor intente mas tarde");
 			} catch (ParseException e) {
 				model.addAttribute("error", "formato de fecha incorrecto, prueba con  YYYY-MM-DD");
 			}

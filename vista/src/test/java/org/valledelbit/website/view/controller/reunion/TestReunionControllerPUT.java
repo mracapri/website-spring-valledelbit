@@ -71,7 +71,6 @@ public class TestReunionControllerPUT {
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
 		reunion.setPonente("Cesar Ceron Perez");
-		reunion.setShortener("http://bit.ly/Er4534");
 		reunion.setTags("['jquery','web']");
 		reunion.setTema("Como implementar jQuery en nuestros sitios web");
 		reunion.setObjetivo("Esta reunion esta dirigida a Universitarios, profesores y publico que le interese conocer el entorno social y el impacto de las redes sociales");
@@ -89,7 +88,6 @@ public class TestReunionControllerPUT {
 		request.addParameter("lugar", reunion.getLugar());
 		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
-		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());
 		request.addParameter("tema", reunion.getTema());
 		request.addParameter("objetivo", reunion.getObjetivo());
@@ -185,7 +183,6 @@ public class TestReunionControllerPUT {
 		request.addParameter("lugar", reunion.getLugar());
 		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
-		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());
 		request.addParameter("tema", reunion.getTema());
 		request.addParameter("objetivo", reunion.getObjetivo());

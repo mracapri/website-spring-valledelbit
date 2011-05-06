@@ -72,7 +72,6 @@ public class TestReunionControllerPOST {
 		reunion.setHora("10:00");
 		reunion.setLugar("Universidad Tecnologica del Valle del Mezquital");
 		reunion.setPonente("Cesar Ceron Perez");
-		reunion.setShortener("http://bit.ly/Er4534");
 		reunion.setTags("['jquery','web']");
 		reunion.setTema("Como implementar jQuery en nuestros sitios web");
 		reunion.setObjetivo("Esta reunion esta dirigida a Universitarios, profesores y publico que le interese conocer el entorno social y el impacto de las redes sociales");
@@ -90,7 +89,6 @@ public class TestReunionControllerPOST {
 		request.addParameter("lugar", reunion.getLugar());
 		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
-		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());
 		request.addParameter("tema", reunion.getTema());
 		request.addParameter("objetivo", reunion.getObjetivo());
@@ -143,7 +141,6 @@ public class TestReunionControllerPOST {
 		request.addParameter("lugar", reunion.getLugar());
 		request.addParameter("nombre_link", nombreLink);
 		request.addParameter("ponente", reunion.getPonente());
-		request.addParameter("shortener", reunion.getShortener());
 		request.addParameter("tags", reunion.getTags());
 		request.addParameter("tema", reunion.getTema());
 		request.addParameter("objetivo", reunion.getObjetivo());
@@ -167,7 +164,7 @@ public class TestReunionControllerPOST {
 		request.setRequestURI("/reunion/set");		
 		
 		final ModelAndView modelAndView = handlerAdapter.handle(request, response, reunionController);
-		Assert.assertTrue(modelAndView.getModel().get("error").equals("geolocalizacion, fecha, hora, lugar, nombre_ink, ponente, shortener, tags, tema y objetivo, son requeridos"));
+		Assert.assertTrue(modelAndView.getModel().get("error").equals("geolocalizacion, fecha, hora, lugar, nombre_ink, ponente, tags, tema y objetivo, son requeridos"));
 		
 	}
 

@@ -1,0 +1,312 @@
+div#logo > img {
+    margin: 9px;
+}
+div#logo {
+    background: none repeat scroll 0 0 white;
+    float: left;
+    height: 90px;
+    width: 90px;
+}
+div#hd > span {
+    color: white;
+    font-family: "Droid Serif";
+    font-weight: bold;
+    left: 440px;
+    position: relative;
+    text-align: right;
+    width: auto;
+}
+div#content .yui-g {
+    height: 800px;
+}
+body {
+    background-image: url("images/background-v2.png");
+    background-repeat: repeat-x;
+}
+div#hd > h1 {
+    color: #EEEEEC;
+    font-family: "Allerta Stencil";
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px 0 0;
+    text-align: center;
+}
+div#hd {
+    background-color: #4E9A06;
+    height: 90px;
+    margin: 5px 0;
+    padding: 0;
+}
+div#bd > .yui-b {
+    float: left;
+    height: 100%;
+    padding: 10px;
+}
+div#yui-main .yui-b {
+    background-color: white;
+    float: right;
+    height: 100%;
+    padding: 10px;
+    width: 98%;
+}
+div#ft {
+    background-color: #4E9A06;
+    color: wheat;
+    font-family: Arial;
+    font-size: 16px;
+    height: 130px;
+    margin: 5px 0 0;
+    text-align: center;
+}
+span#twitter-title {
+    background-color: #0099EE;
+    color: white;
+    display: block;
+    font-size: 1.4em;
+    margin: 5px 0;
+    text-align: center;
+    width: 100%;
+}
+div#nav-footer {
+    width: 20%;
+}
+div#info-footer {
+    width: 29%;
+}
+div#social-footer {
+    width: 20%;
+}
+div#nav-footer > span, div#social-footer > span, div#info-footer > span {
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    font-size: 13px;
+    padding: 2px;
+    text-align: left;
+}
+.twitter-user {
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 0 0 0 5px;
+    text-decoration: underline;
+}
+div#acerca-de > span, div#reuniones > span, div#talleres > span, div#noticias > span {
+    display: block;
+    float: right;
+    margin: 5px 0 0;
+    padding: 12px 0;
+    text-align: center;
+    width: 70%;
+}
+div#nav-footer, div#social-footer, div#info-footer {
+    display: inline-table;
+    height: 60%;
+    padding: 20px 10px 0;
+}
+span#derechos {
+    color: white;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bolder;
+    margin: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+div#content-left .link-option > a {
+    border: 0 none;
+    color: black;
+    display: block;
+    padding: 0 0 0 15px;
+    text-decoration: none;
+}
+div#content-left .link-option {
+    border: 0 none;
+}
+div#content-left {
+    height: 100%;
+    margin: 1px;
+    padding: 0px 10px 0px 10px;
+    vertical-align: top;
+    width: 1%;
+}
+div#content-view {
+    height: 100%;
+    margin: 1px;
+    width: 50%;
+}
+div#content-rigth {
+    height: 100%;
+    vertical-align: top;
+    width: 15%;
+}
+div#content .yui-g {
+    height: 100%;
+}
+div#content-rigth, div#content-view, div#content-left {
+    display: table-cell;
+}
+.title-category {
+    display: table-caption;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 15px 10px 5px;
+    text-decoration: underline;
+    text-indent: 38px;
+    width: 95%;
+}
+div#logo, div#hd, div#bd > .yui-b, div#yui-main .yui-b, div#ft, div#content-rigth, div#content-view, div#content-left, div#content-selected {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 -2px 0 rgba(0, 0, 0, 0.1) inset, 0 0 10px rgba(255, 255, 255, 0.5) inset, 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+div#content-selected {
+    background-color: #EF2929;
+    border: 1px solid;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    height: 22px;
+    left: 290px;
+    padding: 3px 0 0;
+    position: relative;
+    text-align: center;
+    top: 15px;
+    width: 40%;
+}
+span#categoria-laboratorio, span#categoria-valle, span#categoria-social {
+    background-repeat: no-repeat;
+    margin: 10px 0 5px;
+    padding: 9px;
+}
+span#categoria-laboratorio {
+    background-image: url("images/Gnome-Applications-Science-34.png");
+}
+span#categoria-social {
+    background-image: url("images/Red_48x48.png");
+}
+span#categoria-valle {
+    background-image: url("images/Calendar-34.png");
+}
+li#exec {
+    background-color: black;
+    border: 1px solid;
+    color: white;
+    cursor: pointer;
+    padding: 2px;
+    text-align: center;
+    width: 20%;
+}
+li#hide {
+    background-color: black;
+    border: 1px solid;
+    color: white;
+    cursor: pointer;
+    padding: 2px;
+    text-align: center;
+    width: 20%;
+}
+div#exec:hover {
+    font-weight: bold;
+}
+textarea#bash {
+    font-family: Courier New;
+    height: 60%;
+    position: absolute;
+    width: 93%;
+    max-height: 60%;
+    min-height: 60%;
+    max-width: 93%;
+    min-width: 93%;
+}
+div#content-show {
+    display: block;
+    vertical-align: top;
+    width: 100%;
+}
+div#content-twitter {
+    margin: 10px;
+    vertical-align: top;
+}
+#fblike {
+    height: 95px;
+    position: inherit;
+    width: 100%;
+}
+div#likePage {
+    display: block;
+    height: auto;
+    margin: 0;
+    padding: 10px;
+}
+.text-content {
+    display: table-cell;
+    height: 800px;
+    padding: 35px;
+    width: 600px;
+}
+.pregunta, .reunion-tema, .reunion-result {
+    display: block;
+    font-size: large;
+    font-weight: bold;
+    padding: 10px 0;
+}
+.lema {
+    display: block;
+    font-size: large;
+    font-style: italic;
+    font-weight: bold;
+    padding: 10px 0 0;
+    text-align: center;
+}
+div#console, .console-button {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 -2px 0 rgba(0, 0, 0, 0.1) inset, 0 0 10px rgba(255, 255, 255, 0.5) inset, 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+div#console {
+    background-color: white;
+    border: 1px solid;
+    color: black;
+    display: none;
+    height: 230px;
+    left: 630px;
+    padding: 10px;
+    position: fixed;
+    top: 80px;
+    width: 330px;
+}
+.console-message {
+    color: red;
+    display: block;
+    position: relative;
+    top: 170px;
+}
+.console-buttons {
+    position: relative;
+    top: 175px;
+    width: 100%;
+}
+.console-button {
+    display: inline-block;
+}
+.text-publication .titulo {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 13px 0 5px;
+}
+.text-publication li {
+    list-style: circle inside none;
+    padding: 3px 0 0;
+}
+.text-publication ul {
+    margin: 10px 0 0;
+}
+.text-publication .detalles-aqui, .detalles-reunion {
+    color: green;
+}
+.text-publication .fuente a {
+    color: red;
+}
+.text-publication .fuente {
+    display: block;
+    margin: 5px 0 0;
+}

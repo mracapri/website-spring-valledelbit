@@ -4,10 +4,14 @@ var VDB = {
 			url: url,
 			context: document,
 			dataType: "html",
+			beforeSend: function(){
+				//block page
+			},
 			success: function(html){
 				$("#content-show").html(html);
 				var title = $(html).filter("title").text();
 				$("#content-selected").text(title);
+				//unblock
 			}
 		});
 	},

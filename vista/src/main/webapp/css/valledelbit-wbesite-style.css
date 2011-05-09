@@ -386,3 +386,6 @@ div#console {
 div#version {
     position: absolute;
 }
+.footer-link , div#nav-footer a{
+	color: #FFF;
+}

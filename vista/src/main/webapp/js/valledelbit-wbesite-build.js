@@ -34,7 +34,7 @@ var VDB = {
 		$("a#abre-consola").click(function(){
 			$("#console").show("slow");
 		});		
-		$("#console").draggable();
+		//$("#console").draggable();
 	},
 	defineLinkAjax: function(){
 		$(".open-link, .detalles-aqui").live('click', function(element){

@@ -4,6 +4,32 @@
 <head>
    <title>Publicaciones</title>
 </head>
+<style>
+div#recent-publications {
+    display: block;
+    height: 10%;
+    margin: 10px 0;
+    padding: 10px 0;
+    width: 100%;
+}
+div#recent-publications > a {
+    display: list-item;
+    list-style: circle inside none;
+    padding: 0 0 0 15px;
+    text-decoration: none;
+}
+.publication-recent {
+    display: inline-block;
+    width: 80%;
+}
+.publication-title {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    padding: 0 0 10px 15px;
+    text-decoration: underline;
+}
+</style>
 <body>
 	<div class="text-content">
 		<div class="text-publication">	
@@ -28,6 +54,17 @@ Ivy Bridge es prometedor. Intel dice que sus nuevos transistores ofrecer&aacuten
 				<span class="publication-label">Autor: </span>
 				<span class="publication-value">Dennys Oliver Medina</span>
 			</span>
+			<div id="recent-publications">
+				<span class="publication-title">Publicaciones m&aacutes antiguas</span>
+				<a href='#'>
+					<span class="publication-recent">Motor de javascript V8 ultrapotente, hecho por Google</span>
+					<span class="publication-date">2010-05-23</span>
+				</a>
+				<a href='#'>
+					<span class="publication-recent">Google dejo de operar, google-wave</span>
+					<span class="publication-date">2010-05-24</span>
+				</a>
+			</div>
 		</div>
 		
 		<!-- BEGIN discus-->

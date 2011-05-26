@@ -389,3 +389,11 @@ div#version {
 .footer-link , div#nav-footer a{
 	color: #FFF;
 }
+.loading-information {
+    background-image: url("../images/spinner3-black.gif");
+    background-position: 30px 1px;
+    background-repeat: no-repeat;
+    height: 100%;
+    margin: 1px;
+    width: 50%;
+}

@@ -5,13 +5,13 @@ var VDB = {
 			context: document,
 			dataType: "html",
 			beforeSend: function(){
-				//block page
+				$("#content-view").addClass("loading-information");
 			},
 			success: function(html){
+				$("#content-view").removeClass("loading-information");
 				$("#content-show").html(html);
 				var title = $(html).filter("title").text();
 				$("#content-selected").text(title);
-				//unblock
 			}
 		});
 	},

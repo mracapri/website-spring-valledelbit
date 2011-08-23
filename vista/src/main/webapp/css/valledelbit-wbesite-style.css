@@ -169,8 +169,9 @@ div#content-selected {
     padding: 3px 0 0;
     position: relative;
     text-align: center;
-    top: 15px;
+    top: 20px;
     width: 40%;
+    margin-top: -25px;
 }
 span#categoria-laboratorio, span#categoria-valle, span#categoria-social {
     background-repeat: no-repeat;
@@ -239,7 +240,6 @@ div#likePage {
 }
 .text-content {
     display: table-cell;
-    height: 800px;
     padding: 35px;
     width: 600px;
 }

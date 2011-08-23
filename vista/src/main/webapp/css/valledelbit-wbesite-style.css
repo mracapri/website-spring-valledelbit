@@ -20,7 +20,7 @@ div#content .yui-g {
     height: 800px;
 }
 body {
-    background-image: url("http://a0.twimg.com/profile_background_images/100803297/FondoTwitter.jpg");
+    background-image: url("https://github.com/images/modules/header/background-v2.png");
     background-repeat: repeat-x;
 }
 div#hd > h1 {
@@ -34,8 +34,8 @@ div#hd > h1 {
 div#hd {
     background-color: #4E9A06;
     height: 90px;
-    padding: 0;
     margin-bottom: 5px;
+    padding: 0;
 }
 div#bd > .yui-b {
     float: left;

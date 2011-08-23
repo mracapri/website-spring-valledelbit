@@ -20,7 +20,7 @@ div#content .yui-g {
     height: 800px;
 }
 body {
-    background-image: url("../images/background-v2.png");
+    background-image: url("http://a0.twimg.com/profile_background_images/100803297/FondoTwitter.jpg");
     background-repeat: repeat-x;
 }
 div#hd > h1 {
@@ -125,7 +125,7 @@ div#content-left .link-option {
 div#content-left {
     height: 100%;
     margin: 1px;
-    padding: 0px 10px 0px 10px;
+    padding: 0 10px;
     vertical-align: top;
     width: 1%;
 }
@@ -210,12 +210,12 @@ div#exec:hover {
 textarea#bash {
     font-family: Courier New;
     height: 60%;
+    max-height: 60%;
+    max-width: 93%;
+    min-height: 60%;
+    min-width: 93%;
     position: absolute;
     width: 93%;
-    max-height: 60%;
-    min-height: 60%;
-    max-width: 93%;
-    min-width: 93%;
 }
 div#content-show {
     display: block;
@@ -287,8 +287,8 @@ div#console {
 .console-button {
     display: inline-block;
 }
-.text-publication{
-	text-align: justify;
+.text-publication {
+    text-align: justify;
 }
 .text-publication .titulo {
     display: block;
@@ -316,7 +316,7 @@ div#console {
 .reunion-view {
     display: block;
     height: 100%;
-    margin: 10px 0 60px 0;
+    margin: 10px 0 60px;
     width: 100%;
 }
 .reunion-objetivo {
@@ -355,8 +355,8 @@ div#console {
 .reunion-tema {
     color: green;
 }
-.detalles-reunion{
-	cursor: pointer;
+.detalles-reunion {
+    cursor: pointer;
 }
 .social-web {
     display: table-cell;
@@ -367,10 +367,9 @@ div#console {
     text-transform: uppercase;
 }
 .map {
-    width: 100%;
     height: 150px;
+    width: 100%;
 }
-
 .publication-fecha, .publication-autor {
     display: block;
     margin: 5px 0;
@@ -386,8 +385,8 @@ div#console {
 div#version {
     position: absolute;
 }
-.footer-link , div#nav-footer a{
-	color: #FFF;
+.footer-link, div#nav-footer a {
+    color: #FFFFFF;
 }
 .loading-information {
     background-image: url("../images/spinner3-black.gif");

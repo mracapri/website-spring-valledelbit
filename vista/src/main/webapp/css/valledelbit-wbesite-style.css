@@ -1,3 +1,6 @@
+span#derechos > a {
+    color: black;
+}
 div#logo > img {
     margin: 9px;
 }
@@ -50,8 +53,7 @@ div#yui-main .yui-b {
     width: 98%;
 }
 div#ft {
-    background-color: #4E9A06;
-    color: wheat;
+    background-color: white;
     font-family: Arial;
     font-size: 16px;
     height: 130px;
@@ -104,7 +106,7 @@ div#nav-footer, div#social-footer, div#info-footer {
     padding: 20px 10px 0;
 }
 span#derechos {
-    color: white;
+    color: black;
     display: inline-block;
     font-size: 11px;
     font-weight: bolder;
@@ -166,12 +168,12 @@ div#content-selected {
     font-weight: bold;
     height: 22px;
     left: 290px;
+    margin-top: -25px;
     padding: 3px 0 0;
     position: relative;
     text-align: center;
     top: 20px;
     width: 40%;
-    margin-top: -25px;
 }
 span#categoria-laboratorio, span#categoria-valle, span#categoria-social {
     background-repeat: no-repeat;
@@ -386,7 +388,7 @@ div#version {
     position: absolute;
 }
 .footer-link, div#nav-footer a {
-    color: #FFFFFF;
+    color: #4E9A06;
 }
 .loading-information {
     background-image: url("../images/spinner3-black.gif");

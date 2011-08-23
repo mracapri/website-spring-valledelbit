@@ -56,8 +56,9 @@ div#ft {
     background-color: white;
     font-family: Arial;
     font-size: 16px;
-    height: 130px;
-    margin: 5px 0 0;
+    margin-top: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     text-align: center;
 }
 span#twitter-title {
@@ -69,14 +70,13 @@ span#twitter-title {
     text-align: center;
     width: 100%;
 }
-div#nav-footer {
-    width: 20%;
+div#nav-footer, div#social-footer {
+    font-size: 0.8em;
 }
 div#info-footer {
     width: 29%;
 }
 div#social-footer {
-    width: 20%;
 }
 div#nav-footer > span, div#social-footer > span, div#info-footer > span {
     color: #FFFFFF;
@@ -99,11 +99,6 @@ div#acerca-de > span, div#reuniones > span, div#talleres > span, div#noticias > 
     padding: 12px 0;
     text-align: center;
     width: 70%;
-}
-div#nav-footer, div#social-footer, div#info-footer {
-    display: inline-table;
-    height: 60%;
-    padding: 20px 10px 0;
 }
 span#derechos {
     color: black;

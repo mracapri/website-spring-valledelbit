@@ -44,7 +44,7 @@ var VDB = {
 		});
 	}, 
 	loadTwitterReader: function(){
-		$("#content-twitter").twitterReader({twitterUser:'mra_capri', timeRefresh:60000, numberOfTwits:5});
+		$("#content-twitter").twitterReader({twitterUser:'valledelbit', timeRefresh:60000, numberOfTwits:5});
 	}
 };
 $().ready(function(){	

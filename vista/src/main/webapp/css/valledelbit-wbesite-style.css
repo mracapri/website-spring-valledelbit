@@ -34,8 +34,8 @@ div#hd > h1 {
 div#hd {
     background-color: #4E9A06;
     height: 90px;
-    margin: 5px 0;
     padding: 0;
+    margin-bottom: 5px;
 }
 div#bd > .yui-b {
     float: left;
